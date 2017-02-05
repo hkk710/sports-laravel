@@ -147,4 +147,8 @@ class RegisterController extends Controller
         Session::flash('success', 'Registration done successfully!');
         return redirect('/');
     }
+    public function show() {
+        $registers = Register::all();
+        return view('register.show')->withRegisters($registers);
+    }
 }

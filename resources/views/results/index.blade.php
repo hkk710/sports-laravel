@@ -94,26 +94,60 @@ margin-bottom:10px;
                </div>
                  <div id="legend">
                 <h3 class="text-center" class="subhead">Result Entry</h3><br><br>
-               <div id="admin_links" class="container">
-             <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="col-md-offset-4 text-center w3-margin-bottom">
-                    <form action="{{ url('results') }}" method="post">
-                        <input type="submit" class="btn btn-danger btn-lg col-md-6" value="MARCHPAST">
-                    </form>
-                </div>
-                <div class="text-center">
-                    @foreach ($events as $event)
-                        <form action="{{ url('results') }}" method="post" class="col-md-6">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="event" value="{{ $event->id }}">
-                            <input type="submit" value="{{ strtoupper($event->event) }} {{ strtoupper($event->gender) }}" class="{{ $event->gender == 'male' ? 'btn btn-primary btn-lg col-md-12' : 'btn btn-success btn-lg col-md-12' }}" style="margin-bottom: 15px;">
-                        </form>
-                    @endforeach
-                </div>
-         </div>
-         </div>
-            </div>
+                <div class="col-md-8 col-md-offset-2">
+
+                      <!-- Nav tabs -->
+                      <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Male</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Female</a></li>
+                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Group</a></li>
+                      </ul>
+
+                      <!-- Tab panes -->
+                      <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="home">
+                            @foreach ($events->where('gender', '=', 'male')->where('relay', '=', false) as $event)
+                                <form action="{{ url('/results') }}" method="post">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="event" value="{{ $event->id }}">
+                                    <div class="col-md-6">
+                                        <input type="submit" class="btn btn-primary btn-block w3-margin-top" value="{{ strtoupper($event->event) }}">
+                                    </div>
+                                </form>
+                            @endforeach
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="profile">
+                            @foreach ($events->where('gender', '=', 'female')->where('relay', '=', false) as $event)
+                                <form action="{{ url('/results') }}" method="post">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="event" value="{{ $event->id }}">
+                                    <div class="col-md-6">
+                                        <input type="submit" class="btn btn-success btn-block w3-margin-top" value="{{ strtoupper($event->event) }}">
+                                    </div>
+                                </form>
+                            @endforeach
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="messages">
+                            @foreach ($events->where('relay', '=', true) as $event)
+                                <form action="{{ url('/results/group') }}" method="post">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="event" value="{{ $event->event }}">
+                                    <div class="col-md-6">
+                                        <input type="submit" class="btn btn-danger btn-block w3-margin-top" value="{{ strtoupper($event->event) }}">
+                                    </div>
+                                </form>
+                            @endforeach
+                            <form action="{{ url('/results/group') }}" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="event" value="marchpast">
+                                <div class="col-md-6">
+                                    <input type="submit" class="btn btn-danger btn-block w3-margin-top" value="MARCHPAST">
+                                </div>
+                            </form>
+                        </div>
+                      </div>
+
+</div>
                 </div>
             </div>
             </fieldset>

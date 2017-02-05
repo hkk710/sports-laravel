@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet" href="{{ asset('css/parsley.css') }}">
 
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
@@ -213,7 +212,6 @@ element {
 
 </style>
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('js/parsley.min.js') }}"></script>
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -247,14 +245,13 @@ element {
                         <li><a href="{{ url('registernow') }}">Register Now</a></li>
                         <li><a href="#events">Events </a></li>
                     <!--    <li><a href="#cricketteams">Cricket Teams</a></li> -->
-                        <li><a href="#registrations">Registrations</a></li>
+                        <li><a href="{{ url('register') }}">Registrations</a></li>
                     <!--    <li><a href="#superoverregistration">SuperOver Registration</a></li>-->
                         <li><a href="#rules">Rules</a></li>
                         <li><a href="#contact">Contact</a></li>
-            <!--        @if (Route::has('login'))
-                   <li> <a href="{{ url('/login') }}">Login</a></li>
-                   <li> <a href="{{ url('/register') }}">Register</a></li>
-               @endif-->
+                    @if (Auth::check())
+                        <li> <a href="{{ url('/results') }}">Result</a></li>
+                   @endif
                     </nav>
                     </li>
   </ul>
@@ -435,7 +432,7 @@ element {
   </div>
   <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
     <div class="panel-body" style="border-radius:50px;">
-        
+
         <!-- Amrita school of engineering -->
         <!--<p><center>Btech</center></p>
         <p><center>VLSI</center></p>-->
@@ -533,60 +530,7 @@ element {
       <p>{{ Session::get('success') }}</p>
     </div>
   @endif
-  <h3 class="w3-center slideanim">WHERE WE WORK</h3>
-  <p class="w3-center slideanim"><em>We'd love your feedback!</em></p>
-
-  <div  class="w3-row w3-padding-32 w3-section">
-    <div class="w3-col m4 w3-container">
-      <!-- Add Google Maps -->
-      <div id="googleMap" class="w3-round-large w3-greyscale slideanim" style="width:100%;height:400px;"></div>
-    </div>
-    <div class="w3-col m8 w3-container w3-section">
-      <div class="w3-large w3-margin-bottom">
-        <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> AMRITAPURI, KERALA<br>
-        <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: +91 9447103444<br>
-        <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: crossfire@gmail.com<br>
-      </div>
-      <p>Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note:</p>
-
-
-
-      <form class="w3-row-padding slideanim" style="margin:0 -16px 8px -16px" method="POST" action="/send" data-parsley-validate>
-        {{ csrf_field() }}
-        <div class="w3-half">
-          <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="Name" name="name" required="required" maxlength="255">
-        </div>
-        <div class="w3-half">
-          <input class="w3-input w3-border w3-hover-light-grey" type="email" placeholder="Email" name="email" required="required" maxlength="255">
-        </div>
-        <div class="w3-col">
-          <textarea class="w3-input w3-border w3-hover-light-grey" required="required" type="text" placeholder="Comment" name="comment" rows="5" cols="40" minlength="5"></textarea>
-        </div>
-        <button class="w3-btn w3-section w3-right button" style="vertical-align:middle" type="submit" value="SEND MESSAGE" ><span>SEND MESSAGE </span></button>
-        </form>
-        @if (count($errors) > 0)
-          <div class="w3-container w3-red" style="margin-top: 10px">
-            <h3>Sorry!</h3>
-            <p>
-              @foreach ($errors->all() as $error)
-                {{ $error }}
-              @endforeach
-            </p>
-          </div>
-        @endif
-
-</div>
-</div>
-</div>
-<div class="slideanim" style="color:#000; text-align:right; font-size:30px">
- <a href="#" class="w3-hover-text-red" title="To Top"><i class="fa fa-hand-o-up" aria-hidden="true"></i></a>
- </div>
- <div class="slideanim" style="color:#000; text-align:right">
-<p>MOVE UP</p>
-</div>
-</div>
-
-
+  <h3 class="w3-center slideanim">CONTACT US</h3>
 </div>
 <!-- Footer -->
 <footer class="w3-center  w3-padding-16 w3-opacity w3-hover-opacity-off" style="background-color:#000;color:white !important">
@@ -595,7 +539,7 @@ element {
      <a href="#" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
     <a href="#" class="w3-hover-text-indigo"><i class="fa fa-linkedin"></i></a>
   </div>
-  <p>Copyright © 2016 | All rights reserved |Developed by <a href="#" title="AM.AR.U315BCA0 15,27&67" target="_blank" class="w3-hover-text-green">Web-Team</a></p>
+  <p>Copyright © 2016 | All rights reserved |Developed by <a href="{{ url('/webteam') }}" title="AM.AR.U315BCA0 15,27&67" target="_blank" class="w3-hover-text-green">Web-Team</a></p>
 </footer>
 
 <!-- Add Google Maps -->
@@ -637,9 +581,9 @@ window.onscroll = function() {myFunction()};
 function myFunction() {
     var navbar = document.getElementById("myNavbar");
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        navbar.className = "w3-navbar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+        navbar.className = "w3-navbar" + " w3-card-2" + " w3-animate-top" + " w3-black";
     } else {
-        navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+        navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-black", "");
     }
 }
 //any problem remove the below code

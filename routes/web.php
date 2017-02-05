@@ -17,8 +17,10 @@ Route::get('/', function () {
 Route::post('/send', 'HomeController@send');
 Route::get('/registernow', 'RegisterController@index');
 Route::post('/registernow', 'RegisterController@create');
+Route::get('/register', 'RegisterController@show');
 Route::get('/cricket', 'CricketController@index');
 Route::post('/cricket', 'CricketController@create');
+Route::get('/webteam', 'webteamController@index');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
@@ -28,4 +30,5 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/results', 'ResultsController@index');
     Route::post('/results', 'ResultsController@create');
     Route::post('/results/create', 'ResultsController@store');
+    Route::post('/results/group', 'ResultsController@group');
 });

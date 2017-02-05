@@ -68,4 +68,16 @@ class ResultsController extends Controller
         Session::flash('success', 'Result updated successfully');
         return redirect('results');
     }
+    public function group(Request $request) {
+        if ($request->event == 'marchpast') {
+            $event = Event::find(1);
+            $event->id = 0;
+            $event->event = 'marchpast';
+            $event->gender = 'both';
+        }
+        else {
+            $event = Event::where('event', '=', $request->event)->first();
+        }
+        return view('results.group')->withEvent($event);
+    }
 }
