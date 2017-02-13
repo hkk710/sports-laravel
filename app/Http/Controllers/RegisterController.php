@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Event;
 use App\Register;
 use Session;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -142,6 +143,11 @@ class RegisterController extends Controller
         $register->event_one = Event::find($request->event_one)->event;
         $register->event_two = Event::find($request->event_two)->event;
         $register->event_three = Event::find($request->event_three)->event;
+        Mail::send('register.mail', $request->all(), function($message) use ($request) {
+	    	$message->from("hkk710@gmail.com");
+            $message->to($request->email);
+	     	$message->subject('Registration success!');
+	  	});
         $register->save();
 
         Session::flash('success', 'Registration done successfully!');

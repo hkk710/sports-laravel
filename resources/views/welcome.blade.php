@@ -249,8 +249,9 @@ element {
                     <!--    <li><a href="#superoverregistration">SuperOver Registration</a></li>-->
                         <li><a href="#rules">Rules</a></li>
                         <li><a href="#contact">Contact</a></li>
+                        <li> <a href="{{ url('/result_view') }}">View Results</a></li>
                     @if (Auth::check())
-                        <li> <a href="{{ url('/results') }}">Result</a></li>
+                        <li> <a href="{{ url('/results') }}">Result Entry</a></li>
                    @endif
                     </nav>
                     </li>
