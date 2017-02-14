@@ -31,4 +31,5 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/results', 'ResultsController@create');
     Route::post('/results/create', 'ResultsController@store');
     Route::post('/results/group', 'ResultsController@group');
+    Route::post('/results/group/create', 'ResultsController@groupstore');
 });
