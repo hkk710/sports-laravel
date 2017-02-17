@@ -21,6 +21,9 @@ Route::get('/register', 'RegisterController@show');
 Route::get('/cricket', 'CricketController@index');
 Route::post('/cricket', 'CricketController@create');
 Route::get('/webteam', 'webteamController@index');
+Route::get('/result_view', 'ResultsController@show_ind');
+Route::get('/result_view/{gender}/{id}', 'ResultsController@show_ind_form')->name('result.ind');
+Route::get('/result_view/group', 'ResultsController@show_group');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

@@ -97,4 +97,17 @@ class ResultsController extends Controller
         Session::flash('success', 'Score updated successfully');
         return redirect('results');
     }
+    public function show_ind() {
+        $events = Event::all();
+    	return view('results.view')->withEvents($events);
+    }
+    public function show_ind_form($gender, $id) {
+        $event = Event::find($id);
+        $results = Result::all()->where('event_id', '=', $id);
+        return view('results.show')->withResults($results)->withEvent($event);
+    }
+    public function show_group() {
+        $departments = Department::all();
+        return view('results.viewgroup')->withDepartments($departments);
+    }
 }
