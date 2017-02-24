@@ -86,7 +86,6 @@ margin-bottom:10px;
         </script>
     @endif
         <div class="form_wrap" id="reg_form">
-        <form class="form-horizontal" action = "add.php" method = "post" name="form" onsubmit="return check_form();">
             <fieldset>
                <div class="header" class="row">
                    <div class="col-md-12" id="head-content">

@@ -1,6 +1,6 @@
 <!doctype html>
 <head>
-    <title>Amrita sports 2017 registration</title>
+    <title>Results of {{ $event->event }}</title>
     <link rel="stylesheet" href="{{asset('/css/app.css')}}">
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>

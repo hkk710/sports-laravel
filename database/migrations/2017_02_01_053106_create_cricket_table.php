@@ -19,7 +19,7 @@ class CreateCricketTable extends Migration
             $table->string('name');
             $table->string('batch');
             $table->string('roll_no');
-            $table->bigInteger('phone');
+            $table->string('phone');
             $table->integer('score')->default(0);
             $table->string('email');
             $table->string('gender');

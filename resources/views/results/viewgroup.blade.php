@@ -15,7 +15,7 @@
         <div class="col-sm-8 col-sm-offset-2">
             <h1 class="text-center">Department Scores</h1><hr>
             <div class="col-sm-6">
-                <div id="donutchart" style="width: 100%; height: 500px;"></div>
+                <div id="piechart_3d" style="width: 100%; height: 500px;"></div>
             </div>
             <div class="col-sm-6">
                 <table class="table table-bordered">
@@ -77,12 +77,12 @@
             ]);
 
             var options = {
-                title: 'Department Scores',
-                pieHole: 0.4,
+                title: 'My Daily Activities',
+                is3D: true,
             };
 
-            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
             chart.draw(data, options);
-      }
+        }
     </script>
 </body>

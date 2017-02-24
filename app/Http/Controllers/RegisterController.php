@@ -27,6 +27,11 @@ class RegisterController extends Controller
             'event_two' => 'not_in:none',
             'event_three' => 'not_in:none'
         ]);
+        Mail::send('register.mail', $request->all(), function($message) use ($request) {
+	    	$message->from("hkk710@gmail.com");
+            $message->to($request->email);
+	     	$message->subject('Registration success!');
+	  	});
         $registers = Register::all();
         $register = new Register;
         $register->name = $request->name;
@@ -143,11 +148,6 @@ class RegisterController extends Controller
         $register->event_one = Event::find($request->event_one)->event;
         $register->event_two = Event::find($request->event_two)->event;
         $register->event_three = Event::find($request->event_three)->event;
-        Mail::send('register.mail', $request->all(), function($message) use ($request) {
-	    	$message->from("hkk710@gmail.com");
-            $message->to($request->email);
-	     	$message->subject('Registration success!');
-	  	});
         $register->save();
 
         Session::flash('success', 'Registration done successfully!');
@@ -156,5 +156,14 @@ class RegisterController extends Controller
     public function show() {
         $registers = Register::all();
         return view('register.show')->withRegisters($registers);
+    }
+    public function pindex() {
+        $events = Event::all();
+        return view('register.pindex')->withEvents($events);
+    }
+    public function pshow($id) {
+        $event = Event::find($id);
+        $registers = Register::all()->where('gender', '=', $event->gender);
+        return view('register.pshow')->withEvent($event)->withRegisters($registers);
     }
 }

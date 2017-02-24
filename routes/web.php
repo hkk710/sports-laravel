@@ -35,4 +35,11 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/results/create', 'ResultsController@store');
     Route::post('/results/group', 'ResultsController@group');
     Route::post('/results/group/create', 'ResultsController@groupstore');
+    Route::get('/print', 'RegisterController@pindex');
+    Route::get('/print/{id}', 'RegisterController@pshow')->name('print.show');
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
 });
