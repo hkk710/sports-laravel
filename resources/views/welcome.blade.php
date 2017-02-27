@@ -237,6 +237,35 @@ element {
         $('#myModal').modal('show');
     </script>
 @endif
+<div class="modal fade" id="scoremodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">View Scores</h4>
+      </div>
+      <div class="modal-body">
+        <a href="{{ url('/score/male') }}" class="btn btn-primary btn-block">Male Individual</a>
+        <a href="{{ url('/score/female') }}" class="btn btn-primary btn-block">Female Individual</a>
+        <a class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          Department Individual
+        </a>
+        <div class="collapse" id="collapseExample">
+            <div class="well well-sm">
+                <a href="{{ url('/score/group/1') }}" class="btn btn-default btn-sm btn-block">ME</a>
+                <a href="{{ url('/score/group/2') }}" class="btn btn-default btn-sm btn-block">ECE</a>
+                <a href="{{ url('/score/group/3') }}" class="btn btn-default btn-sm btn-block">EEE</a>
+                <a href="{{ url('/score/group/4') }}" class="btn btn-default btn-sm btn-block">CSE</a>
+                <a href="{{ url('/score/group/5') }}" class="btn btn-default btn-sm btn-block">CSA</a>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="w3-top" data-spy="scroll" style="color:#fff !important">
   <ul class="w3-navbar w3-card-2 w3-animate-top w3-black" style="color:#000;" id="myNavbar">
     <li><a href="#">HOME</a></li>
@@ -254,6 +283,7 @@ element {
                         <li> <a href="{{ url('/results') }}">Result Entry</a></li>
                         <li> <a href="{{ url('/print') }}">Print Results</a></li>
                    @endif
+                        <li> <a href="#" data-toggle="modal" data-target="#scoremodel">Scores</a></li>
                     </nav>
                     </li>
   </ul>

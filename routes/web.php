@@ -24,6 +24,9 @@ Route::get('/webteam', 'webteamController@index');
 Route::get('/result_view', 'ResultsController@show_ind');
 Route::get('/result_view/{gender}/{id}', 'ResultsController@show_ind_form')->name('result.ind');
 Route::get('/result_view/group', 'ResultsController@show_group');
+Route::get('/score/male', 'ScoreController@male');
+Route::get('/score/female', 'ScoreController@female');
+Route::get('/score/group/{department}', 'ScoreController@group');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
