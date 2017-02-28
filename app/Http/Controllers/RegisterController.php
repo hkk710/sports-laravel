@@ -19,7 +19,7 @@ class RegisterController extends Controller
     public function create(Request $request) {
         $this->validate($request, [
             'name' => 'required',
-            'roll_no' => 'required',
+            'roll_no' => 'required|unique:registers,roll_no',
             'phone' => 'required|numeric',
             'email' => 'required|email',
             'gender' => 'required',

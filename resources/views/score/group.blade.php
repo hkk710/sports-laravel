@@ -45,7 +45,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="5" class="text-right">Department Score: {{ $department->score }}</th>
+                                        <th colspan="5" class="text-right">Total Score: {{ $registers->where('gender', '=', 'male')->sum('score') }}</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -74,7 +74,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="5" class="text-right">Department Score: {{ $department->score }}</th>
+                                        <th colspan="5" class="text-right">Total Score: {{ $registers->where('gender', '=', 'female')->sum('score') }}</th>
                                     </tr>
                                 </tfoot>
                             </table>

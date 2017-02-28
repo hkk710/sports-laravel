@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Register;
-use App\Department;
 
 class ScoreController extends Controller
 {
@@ -19,7 +18,6 @@ class ScoreController extends Controller
         return view('score.female')->withRegisters($registers);
     }
     public function group($department) {
-        $Cdepartment = Department::find($department);
         if ($department == 1) {
             $registers = Register::all()->where('batch', '=', 'ME')->sortByDesc('score');
         }
@@ -35,6 +33,6 @@ class ScoreController extends Controller
         if ($department == 5) {
             $registers = Register::all()->where('batch', '=', 'CSA')->sortByDesc('score');
         }
-        return view('score.group')->withDepartment($Cdepartment)->withRegisters($registers);
+        return view('score.group')->withRegisters($registers);
     }
 }
